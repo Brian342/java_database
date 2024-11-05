@@ -24,18 +24,8 @@ public class login extends JDialog{
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 
-        btnRegister.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                registerUser();
-            }
-        });
-        btnCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        btnRegister.addActionListener(e -> registerUser());
+        btnCancel.addActionListener(e -> dispose());
 
         setVisible(true);
 
@@ -73,7 +63,7 @@ public class login extends JDialog{
 
     private User addUserToDatabase(String name, String email, String phone, String password){
         User user = null;
-        final String DB_URL = "jdbc:mysql://localhost:3306/Javaconnectivity";
+        final String DB_URL = "jdbc:mysql://localhost:3306/Javaconnectivity"; // sql connectivity
         final String USERNAME = "root";
         final String PASSWORD = "";
 
