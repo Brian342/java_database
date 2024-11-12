@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class finance {
     private JTextField txtreg_number;
@@ -63,30 +67,83 @@ public class finance {
     public finance() {
         connect();
         table_load();
+        final int fee = 50000;
+        //Listener for automatic calculation of outstanding balance and clearance status
+        txtTotalamountpaid.getDocument().addDocumentListener(new DocumentListener() {
+            private void calculateAndDisplayOutstandingBalance(){
+                try{
+                    int totalAmountPaid = Integer.parseInt(txtTotalamountpaid.getText());
+                    int outstandingBalance = fee - totalAmountPaid;
+
+                    // update Outstanding Balance
+
+                    txtOutstandingbalance.setText(String.valueOf(outstandingBalance)); // Display in txtOutstadingBalance
+
+                    //update Clearance Status
+                    if(outstandingBalance == 0){
+                        txtclearancestatus.setText("Cleared");
+                    }else{
+                        txtclearancestatus.setText("Not Cleared");
+                    }
+                }catch (NumberFormatException ex){
+                    txtOutstandingbalance.setText("0"); // Default to 0 if input is invalid
+                    txtclearancestatus.setText(("Not Cleared"));
+                }
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                calculateAndDisplayOutstandingBalance();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                calculateAndDisplayOutstandingBalance();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                calculateAndDisplayOutstandingBalance();
+            }
+        });
         btnsave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final int fee = 50000;
+
                 String RegNumber, Clearance_status, due_date, dateOfLastRecordUpdate;
-                Integer Total_amount_paid, Outstanding_balance;
+                Integer Total_amount_paid = 0, Outstanding_balance = 0;
+
 
                 RegNumber = txtreg_number.getText();
                 Clearance_status = txtclearancestatus.getText();
-                Total_amount_paid = Integer.valueOf(txtTotalamountpaid.getText());
-                Outstanding_balance = fee - Integer.valueOf(txtTotalamountpaid.getText());
+                try {
+                  due_date = txtduedate.getText();
+                  dateOfLastRecordUpdate = txtDateOfLastRecord.getText();
+
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                    Date parsedDueDate =  format.parse(due_date);
+                    java.sql.Date sqlDueDate = new java.sql.Date(parsedDueDate.getTime());
+
+                    // Parse and format `dateOfLastRecordUpdate`
+                    Date parsedRecordDate = format.parse(dateOfLastRecordUpdate);
+                    java.sql.Date sqlRecordDate = new java.sql.Date(parsedRecordDate.getTime());
+
+
+                    Total_amount_paid = Integer.parseInt(txtTotalamountpaid.getText());
+                    Outstanding_balance = Integer.parseInt(txtOutstandingbalance.getText());
+
                 due_date = txtduedate.getText();
                 dateOfLastRecordUpdate = txtDateOfLastRecord.getText();
 
-                try {
                     pst = con.prepareStatement("INSERT INTO finance(Reg_number, Total_amount_paid, Outstanding_balance, Due_date, Clearance_status, Date_of_last_record_update)values(?,?,?,?,?,?)");
                     pst.setString(1, RegNumber);
-                    pst.setString(2, String.valueOf(Total_amount_paid));
-                    pst.setString(3, String.valueOf(Outstanding_balance));
-                    pst.setString(4, due_date);
+                    pst.setInt(2, Total_amount_paid);
+                    pst.setInt(3, Outstanding_balance);
+                    pst.setDate(4, sqlDueDate);
                     pst.setString(5, Clearance_status);
-                    pst.setString(6,dateOfLastRecordUpdate);
+                    pst.setDate(6, sqlRecordDate);
                     pst.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Record Added!!");
+
                     table_load();
                     txtreg_number.setText("");
                     txtclearancestatus.setText("");
@@ -95,9 +152,58 @@ public class finance {
                     txtduedate.setText("");
                     txtDateOfLastRecord.setText("");
 
+                } catch (SQLException |  java.text.ParseException ex) {
+                    ex.printStackTrace();
+                }
+
+            }
+        });
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try{
+                    String id = txtsearch.getText();
+
+                    pst = con.prepareStatement("SELECT Reg_number, Total_amount_paid, Outstanding_balance, Due_date, Clearance_status, Date_of_last_record_update FROM finance WHERE id = ?");
+                    pst.setString(1, id);
+                    ResultSet rs = pst.executeQuery();
+
+                    if (rs.next()==true){
+                        String Reg_number = rs.getString(1);
+                        int Total_amount_paid = rs.getInt(2);
+                        int Outstanding_balance = rs.getInt(3);
+                        Date Due_date = rs.getDate(4);
+                        String Clearance_status = rs.getString(5);
+                        Date Date_of_last_record_update = rs.getDate(6);
+
+                        txtreg_number.setText(Reg_number);
+                        txtTotalamountpaid.setText(String.valueOf(Total_amount_paid));
+                        txtOutstandingbalance.setText(String.valueOf(Outstanding_balance));
+                        txtduedate.setText(String.valueOf(Due_date));
+                        txtclearancestatus.setText(String.valueOf(Clearance_status));
+                        txtDateOfLastRecord.setText(String.valueOf(Date_of_last_record_update));
+
+
+                    }
+                    else{
+                        txtreg_number.setText("");
+                        txtTotalamountpaid.setText("");
+                        txtOutstandingbalance.setText("");
+                        txtduedate.setText("");
+                        txtclearancestatus.setText("");
+                        txtDateOfLastRecord.setText("");
+                        JOptionPane.showMessageDialog(null,"Invalid Student Number");
+
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+            }
+        });
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
             }
         });
