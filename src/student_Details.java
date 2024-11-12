@@ -39,6 +39,7 @@ public class student_Details {
             System.out.println("Successful");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -81,7 +82,7 @@ public class student_Details {
                     pst.setString(5, department);
                     pst.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Record Added!!");
-                    //table_load();
+                    table_load();
                     txtname.setText("");
                     txtregnumber.setText("");
                     txtyear.setText("");
@@ -89,7 +90,7 @@ public class student_Details {
                     txtdepartment.setText("");
 
                 } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                    ex.printStackTrace();
                 }
             }
         });
@@ -131,7 +132,7 @@ public class student_Details {
 
 
                 } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                    ex.printStackTrace();
                 }
             }
         });
@@ -157,22 +158,45 @@ public class student_Details {
                     pst.setString(6,studentid);
                     pst.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Record Updated");
-                    //table_load()
+                    table_load();
                     txtname.setText("");
                     txtregnumber.setText("");
                     txtyear.setText("");
                     txtschool.setText("");
                     txtdepartment.setText("");
+                    txtname.requestFocus();
 
                 } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                    ex.printStackTrace();
                 }
             }
         });
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String studentid;
 
+                studentid = txtid.getText();
+
+                try{
+                    pst = con.prepareStatement("DELETE FROM Student_details WHERE id = ?");
+
+                    pst.setString(1, studentid);
+
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Record Deleted");
+                    table_load();
+                    txtname.setText("");
+                    txtregnumber.setText("");
+                    txtyear.setText("");
+                    txtschool.setText("");
+                    txtdepartment.setText("");
+                    txtname.requestFocus();
+
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
