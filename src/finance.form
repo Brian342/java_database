@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="finance">
+  <grid id="27dc6" binding="financepanel" layout-manager="GridLayoutManager" row-count="11" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="647" height="508"/>
+    </constraints>
+    <properties>
+      <background color="-11070713"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="c82ab" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="JetBrains Mono" size="20" style="0"/>
+          <foreground color="-1"/>
+          <text value="Student Finance Record"/>
+        </properties>
+      </component>
+      <component id="7a634" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Bodoni 72 Smallcaps" size="20" style="0"/>
+          <foreground color="-1"/>
+          <text value="Reg_Number:"/>
+        </properties>
+      </component>
+      <component id="3861b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Bodoni 72 Smallcaps" size="20" style="0"/>
+          <foreground color="-1"/>
+          <text value="Total_Amount_Paid:"/>
+        </properties>
+      </component>
+      <component id="28a36" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Bodoni 72 Smallcaps" size="20" style="0"/>
+          <foreground color="-1"/>
+          <text value="Outstanding Balance:"/>
+        </properties>
+      </component>
+      <component id="8da10" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Bodoni 72 Smallcaps" size="20" style="0"/>
+          <foreground color="-1"/>
+          <text value="Due_Date:"/>
+        </properties>
+      </component>
+      <component id="ca185" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Bodoni 72 Smallcaps" size="20" style="0"/>
+          <foreground color="-1"/>
+          <text value="Clearance_Status:"/>
+        </properties>
+      </component>
+      <component id="fa9c0" class="javax.swing.JTextField" binding="txtreg_number">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+        </properties>
+      </component>
+      <component id="2e624" class="javax.swing.JTextField" binding="txtTotalamountpaid">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+        </properties>
+      </component>
+      <component id="9d056" class="javax.swing.JTextField" binding="txtOutstandingbalance">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+        </properties>
+      </component>
+      <component id="a6b6b" class="javax.swing.JTextField" binding="txtduedate">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+        </properties>
+      </component>
+      <component id="da2d4" class="javax.swing.JTextField" binding="txtDateOfLastRecord">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+        </properties>
+      </component>
+      <component id="c603b" class="javax.swing.JTextField" binding="txtclearancestatus">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+        </properties>
+      </component>
+      <component id="b20c4" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+          <font name="Bodoni 72 Smallcaps" size="20" style="0"/>
+          <foreground color="-1"/>
+          <text value="Date_of_Last_record_update:"/>
+        </properties>
+      </component>
+      <scrollpane id="8e18" binding="table_2">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11070713"/>
+          <foreground color="-11070713"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="1e20a" class="javax.swing.JTable" binding="table2">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="b3351" class="javax.swing.JButton" binding="searchButton" default-binding="true">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11070713"/>
+          <font name="Andale Mono" size="16" style="0"/>
+          <text value="Search:"/>
+        </properties>
+      </component>
+      <component id="47f08" class="javax.swing.JTextField" binding="txtsearch">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+        </properties>
+      </component>
+      <component id="2aed4" class="javax.swing.JButton" binding="btnsave">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11070713"/>
+          <font name="Andale Mono" size="16" style="0"/>
+          <text value="Save"/>
+        </properties>
+      </component>
+      <component id="2b48c" class="javax.swing.JButton" binding="btncancel">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11070713"/>
+          <font name="Andale Mono" size="16" style="0"/>
+          <text value="Cancel"/>
+        </properties>
+      </component>
+      <component id="f9517" class="javax.swing.JButton" binding="updateButton" default-binding="true">
+        <constraints>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11070713"/>
+          <font name="Andale Mono" size="16" style="0"/>
+          <text value="Update"/>
+        </properties>
+      </component>
+      <component id="8c70b" class="javax.swing.JButton" binding="deleteButton" default-binding="true">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11070713"/>
+          <font name="Andale Mono" size="16" style="0"/>
+          <text value="Delete"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
