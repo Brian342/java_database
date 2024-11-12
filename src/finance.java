@@ -204,7 +204,90 @@ public class finance {
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String financeid, Reg_number, Clearance_status,dueDate,dateOfLastRecordUpdate;
+                Integer Total_amount_paid,Outstanding_balance;
 
+                Reg_number = txtreg_number.getText();
+                Clearance_status = txtclearancestatus.getText();
+                Total_amount_paid = Integer.valueOf(txtTotalamountpaid.getText());
+                Outstanding_balance = Integer.valueOf(txtOutstandingbalance.getText());
+                dueDate = txtduedate.getText();
+                dateOfLastRecordUpdate = txtDateOfLastRecord.getText();
+                financeid = txtsearch.getText();
+
+                try{
+                    // prepare the sql update statement with the correct order of parameters
+                    pst = con.prepareStatement("UPDATE finance set Reg_number = ?, Total_amount_paid = ?, Outstanding_balance = ?, Due_date = ?, Clearance_status = ?, Date_of_last_record_update = ? WHERE id = ? ");
+                    pst.setString(1, Reg_number);
+                    pst.setInt(2, Outstanding_balance);
+                    pst.setInt(3, Total_amount_paid);
+                    pst.setString(4,dueDate);
+                    pst.setString(5, Clearance_status);
+                    pst.setString(6,dateOfLastRecordUpdate);
+                    pst.setString(7, financeid);
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Record Updated");
+
+                    // clear input fields after update
+                    table_load();
+                    txtreg_number.setText("");
+                    txtTotalamountpaid.setText("");
+                    txtOutstandingbalance.setText("");
+                    txtduedate.setText("");
+                    txtclearancestatus.setText("");
+                    txtDateOfLastRecord.setText("");
+                    txtsearch.setText("");
+                    txtreg_number.requestFocus();
+
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String financialid;
+
+                financialid = txtsearch.getText();
+
+                try{
+                    pst = con.prepareStatement("DELETE FROM finance WHERE id = ?");
+
+                    pst.setString(1, financialid);
+
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Record Deleted");
+                    txtreg_number.setText("");
+                    txtTotalamountpaid.setText("");
+                    txtOutstandingbalance.setText("");
+                    txtduedate.setText("");
+                    txtclearancestatus.setText("");
+                    txtDateOfLastRecord.setText("");
+                    txtsearch.setText("");
+                    txtreg_number.requestFocus();
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        btncancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear all the input fields
+                txtreg_number.setText("");
+                txtsearch.setText("");
+                txtclearancestatus.setText("");
+                txtduedate.setText("");
+                txtTotalamountpaid.setText("");
+                txtDateOfLastRecord.setText("");
+                txtOutstandingbalance.setText("");
+
+                //reset focus to the first field
+                txtreg_number.requestFocus();
+
+                JOptionPane.showMessageDialog(null, "Inputs Cleared Successfully");
             }
         });
     }
