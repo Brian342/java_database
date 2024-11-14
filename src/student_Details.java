@@ -29,7 +29,7 @@ public class student_Details {
     }
 
 
-    Connection con;
+    Connection  con;
     PreparedStatement pst;
 
     public void connect() {
@@ -41,7 +41,7 @@ public class student_Details {
             ex.printStackTrace();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(); // this is a comment
         }
     }
 
