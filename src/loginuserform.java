@@ -87,6 +87,8 @@ public class loginuserform extends JDialog{
 
     public static void main(String[] args) {
         loginuserform loginform = new loginuserform(null);
+        JFrame parentFrame = new JFrame();
+        new loginuserform(parentFrame);
         User user = loginform.user; // if the user credentials are correct, then the authentication is complete.
         if(user != null){
             JOptionPane.showMessageDialog(null,

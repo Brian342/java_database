@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class usercreation extends JDialog{
@@ -11,6 +13,7 @@ public class usercreation extends JDialog{
     private JButton btnRegister;
     private JButton btnCancel;
     private JPanel registerPanel;
+    private JButton Login;
 
     public usercreation(JFrame parent){
         super(parent);
@@ -27,6 +30,18 @@ public class usercreation extends JDialog{
 
         setVisible(true);
 
+        Login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // opens another form when clicked
+                JFrame parentFrame = new JFrame();
+                loginuserform loginuser = new loginuserform(parentFrame);
+                loginuser.setVisible(true);
+
+                dispose();
+
+            }
+        });
     }
 
     private void registerUser() {
