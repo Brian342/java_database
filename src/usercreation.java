@@ -14,6 +14,7 @@ public class usercreation extends JDialog{
     private JButton btnCancel;
     private JPanel registerPanel;
     private JButton Login;
+    private JButton btnNavigateToLogin; // Add the navigation button
 
     public usercreation(JFrame parent){
         super(parent);
@@ -50,27 +51,45 @@ public class usercreation extends JDialog{
         String phone = tfphone.getText();
         String password = String.valueOf(pfPassword.getPassword());
         String confirmPassword = String.valueOf(pfconfirmpassword.getPassword());
-
-        if(name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()){
+    
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Please enter all fields",
-                            "Try Again",
+                    "Try Again",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        if (!password.equals(confirmPassword)){
+    
+        if (!password.equals(confirmPassword)) {
             JOptionPane.showMessageDialog(this,
                     "Confirm password does not match",
                     "Try Again",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-       user =  addUserToDatabase(name, email, phone, password);
-        if (user != null){
+    
+        user = addUserToDatabase(name, email, phone, password);
+        if (user != null) {
+            // Show success message
+            JOptionPane.showMessageDialog(this,
+                    "Registration Successful for: " + user.name,
+                    "Registration Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+    
+            // Navigate to loginuserform
+            JFrame parentFrame = (JFrame) this.getParent(); // Cast the parent dialog
+            new loginuserform(parentFrame);
+    
+            // Dispose of the current dialog
             dispose();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Registration Failed. Please try again.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
+    
 
     public User user;
 

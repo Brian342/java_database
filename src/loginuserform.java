@@ -26,20 +26,28 @@ public class loginuserform extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 String email = tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
-
+        
                 user = getAuthenticateUser(email, password);
-
-                if(user != null){
+        
+                if (user != null) {
+                    // Close the login form
                     dispose();
-                }
-                else{
-                    JOptionPane.showMessageDialog(loginuserform. this,
+        
+                    // Open the student_Details form
+                    JFrame studentDetailsFrame = new JFrame("Student Details");
+                    studentDetailsFrame.setContentPane(new student_Details().Main); // Load the student_Details panel
+                    studentDetailsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    studentDetailsFrame.pack();
+                    studentDetailsFrame.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(loginuserform.this,
                             "Email or Password invalid",
                             "Try Again",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
+        
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

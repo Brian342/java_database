@@ -18,7 +18,7 @@ public class finance {
     private JTextField txtDateOfLastRecord;
     private JButton btnsave;
     private JButton btncancel;
-    private JPanel financepanel;
+    public JPanel financepanel;
     private JButton searchButton;
     private JTextField txtsearch;
     private JTable table2;
@@ -116,8 +116,8 @@ public class finance {
                 RegNumber = txtreg_number.getText();
                 Clearance_status = txtclearancestatus.getText();
                 try {
-                  due_date = txtduedate.getText();
-                  dateOfLastRecordUpdate = txtDateOfLastRecord.getText();
+                    due_date = txtduedate.getText();
+                    dateOfLastRecordUpdate = txtDateOfLastRecord.getText();
 
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                     Date parsedDueDate =  format.parse(due_date);
@@ -131,8 +131,8 @@ public class finance {
                     Total_amount_paid = Integer.parseInt(txtTotalamountpaid.getText());
                     Outstanding_balance = Integer.parseInt(txtOutstandingbalance.getText());
 
-                due_date = txtduedate.getText();
-                dateOfLastRecordUpdate = txtDateOfLastRecord.getText();
+                    due_date = txtduedate.getText();
+                    dateOfLastRecordUpdate = txtDateOfLastRecord.getText();
 
                     pst = con.prepareStatement("INSERT INTO finance(Reg_number, Total_amount_paid, Outstanding_balance, Due_date, Clearance_status, Date_of_last_record_update)values(?,?,?,?,?,?)");
                     pst.setString(1, RegNumber);

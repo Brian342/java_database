@@ -3,6 +3,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -20,7 +21,7 @@ public class student_Details {
     private JButton deleteButton;
     private JButton searchButton;
     private JTextField txtid;
-    private JPanel Main;
+    public JPanel Main;
     private JScrollPane table_1;
     private JTextField txtTotalamountpaid;
     private JTextField txtOutstandingbalance;
@@ -28,6 +29,7 @@ public class student_Details {
     private JTextField txtclearancestatus;
     private JTextField txtDateOfLastRecord;
     private JButton cancelButton;
+     private JButton btnNavigateToFinance; // Add the navigation button
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("student_Details");
@@ -67,12 +69,71 @@ public class student_Details {
 
     }
 
-
-
     public student_Details() {
+        // Initialize Main panel and other components
+        if (Main == null) {
+            Main = new JPanel();
+            Main.setLayout(new BorderLayout());
+        }
+
+        if (table_1 == null) {
+            table_1 = new JScrollPane();
+        }
+
+        if (table1 == null) {
+            table1 = new JTable();
+            table_1.setViewportView(table1);
+        }
+
+        if (saveButton == null) {
+            saveButton = new JButton("Save");
+        }
+
+        if (searchButton == null) {
+            searchButton = new JButton("Search");
+        }
+
+        if (updateButton == null) {
+            updateButton = new JButton("Update");
+        }
+
+        if (deleteButton == null) {
+            deleteButton = new JButton("Delete");
+        }
+
+        // Initialize btnNavigateToFinance
+        if (btnNavigateToFinance == null) {
+            btnNavigateToFinance = new JButton("Navigate to Finance");
+        }
+
+        // Add components to Main panel
+        Main.add(table_1, BorderLayout.CENTER); // Adding table_1 in the center
+        Main.add(saveButton, BorderLayout.SOUTH); // Adding saveButton at the bottom
+        Main.add(btnNavigateToFinance, BorderLayout.NORTH); // Adding btnNavigateToFinance at the top
+
+        // Establish database connection and load table data
         connect();
         table_load();
         final int fee = 50000;
+
+        
+        // Add ActionListener for btnNavigateToFinance
+        btnNavigateToFinance.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Navigate to the Finance form
+                JFrame financeFrame = new JFrame("Finance");
+                financeFrame.setContentPane(new finance().financepanel); // Initialize the finance panel
+                financeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                financeFrame.pack();
+                financeFrame.setVisible(true);
+                // If you want to close the current form when navigating, use:
+                // ((JFrame) SwingUtilities.getWindowAncestor(Main)).dispose();
+                // To temporarily hide the form:
+                // Main.setVisible(false);
+            }
+        });
+        
         //listener for automatic calculation of outstanding balance and clearance status
         txtTotalamountpaid.getDocument().addDocumentListener(new DocumentListener() {
             private void calculateAndDisplayOutstandingBalance(){

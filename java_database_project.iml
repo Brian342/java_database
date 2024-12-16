@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mysql-connector-j-9.1.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-j-9.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,11 +19,11 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../rs2xml.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/rs2xml.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/../rs2xml.jar!/src" />
+          <root url="jar://$USER_HOME$/Downloads/rs2xml.jar!/src" />
         </SOURCES>
       </library>
     </orderEntry>
